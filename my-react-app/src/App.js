@@ -1,27 +1,11 @@
 import React,{Component} from 'react';
-
-// class App extends Component {
-//   render(){
-//     const greeting = "Hi!This is Takumi!!"
-//     return (
-//       <React.Fragment>
-//         <div className="App">
-//           <header className="App-header">
-//             <h1 className='title'>HelloWorld</h1>
-//           </header>
-//         </div>
-//         <h2>{greeting}</h2>
-//       </React.Fragment>
-      
-//     );
-//   }
-// }
+import PropTypes from 'prop-types';
 
 const App = () =>{
   const profile = [
-    {name: "jhon dow", agr: "28"},
-    {name: "kevin", agr: "20"},
-    {name: "claire", agr: "24"},
+    {name: "jhon dow", age: 25},
+    {name: "kevin", age: 20},
+    {name: "claire", age: 24},
   ]
   return (
     <React.Fragment>
@@ -33,6 +17,7 @@ const App = () =>{
           })
         }
       </ul>
+      <Counter></Counter>
     </React.Fragment>
   )
 }
@@ -43,5 +28,41 @@ const User = (props) => {
   )
 }
 
+
+User.propTypes = {
+  name : PropTypes.string,
+  age : PropTypes.number,
+}
+
+
+class Counter extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {count: 0}
+    console.log(this.state);
+  }
+  countPlus = ()=> {
+    console.log('OK');
+    const currentCount = this.state.count;
+    this.setState({count: currentCount + 1});
+  }
+  countMinus = ()=> {
+    console.log('OK');
+    const currentCount = this.state.count;
+    this.setState({count: currentCount - 1});
+  }
+  render(){
+    const greeting = "Hi!This is Takumi!!"
+    console.log(this.state);
+    return (
+      <React.Fragment>
+        <h2>count:{this.state.count}</h2>
+        <button onClick={this.countPlus}>+1</button>
+        <button  onClick={this.countMinus}>-1</button>
+      </React.Fragment>
+      
+    );
+  }
+}
 
 export default App;
